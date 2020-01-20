@@ -1,33 +1,53 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Map1 from './Map';
-import Form from './Form'
-import List from './List';
+import Map from './Map';
+import Form from "./Form";
+import Background from './image.png';
+const style = {
+    width:"100%",
+    height:"100%",
+    backgroundImage: `url(${Background})`,
+    backgroundPosition: 'center',
+   backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    marginTop:"0px"
+};
 class App extends React.Component {
-  state = { markerPosition: { lat: 52.2297, lng: 21.0122 } };
-  moveMarker = () => {
-    const { lat, lng } = this.state.markerPosition;
+  state = {
+    markersData: [
+      { latLng: { lat: 52.2297, lng: 21.0122} }
+    ]
+  };
+  addMarker = () => {
+    const { markersData } = this.state;
+    const lastMarker = markersData[markersData.length - 1];
+
     this.setState({
-      markerPosition: {
-        lat: lat + 0.0001,
-        lng: lng + 0.0001,
-      }
+      markersData: [
+        ...markersData,
+        {
+          latLng: {
+            lat: lastMarker.latLng.lat - 0.01,
+            lng: lastMarker.latLng.lng - 0.001,
+          }
+        }
+      ]
     });
   };
   render() {
-    const { markerPosition } = this.state;
+    const { markersData } = this.state;
     return (
-      <div>
-          <h1>SEWIK /Mapa</h1>
-          <Map1 markerPosition={markerPosition} />
-        <div>Current markerPosition: lat: {markerPosition.lat}, lng: {markerPosition.lng}</div>
+      <div style={style} >
+        <h1>SEWIK/Mapa</h1>
+        <Map markersData={markersData} />
         <button
-          onClick={this.moveMarker}
+          onClick={this.addMarker}
         >
-          Move marker
+         submit
         </button>
-          {/*<List></List>*/}
-          <Form></Form>
+
+        <Form></Form>
+
       </div>
     );
   }

@@ -1,9 +1,9 @@
 {
-  "name": "react-leaflet-map-with-marker",
+  "name": "react-leaflet-map-with-layer-of-markers",
   "version": "1.0.0",
   "description": "",
-  "keywords": ["map", "leaflet", "react"],
-  "homepage": "https://codesandbox.io/s/m4k3x1ynl8",
+  "keywords": [],
+  "homepage": "https://codesandbox.io/s/pm8pro1olm",
   "main": "index.js",
   "dependencies": {
     "react-dom": "16.0.0",

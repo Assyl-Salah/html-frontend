@@ -1,31 +1,18 @@
 import React from "react";
 import L from "leaflet";
-import './Form.css'
+
 const style = {
   width: "40%",
-  height: "300px",
-  position: "fixed",
- marginLeft:"-18px",
-
-
+  height: "500px",
+  marginRight:"0px",
+  marginLeft:"0px"
 };
 
 class Map extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      markers: [[52.2297, 21.0122]]
-    };
-  }
-
-  addMarker = (e) => {
-    const {markers} = this.state
-    markers.push(e.latlng)
-    this.setState({markers})
-  }
   componentDidMount() {
+
     // create map
-    this.map = L.map("Map", {
+    this.map = L.map("map", {
       center: [52.2297, 21.0122],
       zoom: 16,
       layers: [
@@ -36,17 +23,24 @@ class Map extends React.Component {
       ]
     });
 
-    // add marker
-    this.marker = L.marker(this.props.markerPosition).addTo(this.map);
+    // add layer
+    this.layer = L.layerGroup().addTo(this.map);
+    this.updateMarkers(this.props.markersData);
   }
-  componentDidUpdate({ markerPosition }) {
-    // check if position has changed
-    if (this.props.markerPosition !== markerPosition) {
-      this.marker.setLatLng(this.props.markerPosition);
+  componentDidUpdate({ markersData }) {
+    // check if data has changed
+    if (this.props.markersData !== markersData) {
+      this.updateMarkers(this.props.markersData);
     }
   }
+  updateMarkers(markersData) {
+    this.layer.clearLayers();
+    markersData.forEach(marker => {
+      L.marker(marker.latLng).addTo(this.layer);
+    });
+  }
   render() {
-    return <div id="Map" style={style} />;
+    return <div id="map" style={style} />;
   }
 }
 

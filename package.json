@@ -1,20 +1,14 @@
 {
-  "name": "react-leaflet-map-with-marker",
+  "name": "react-leaflet-map-with-layer-of-markers",
   "version": "0.0.0",
   "description": null,
-  "keywords": [
-    "map",
-    "leaflet",
-    "react"
-  ],
-  "homepage": "https://codesandbox.io/s/m4k3x1ynl8",
+  "keywords": [],
+  "homepage": "https://codesandbox.io/s/pm8pro1olm",
   "main": "index.js",
   "dependencies": {
-    "leaflet": "latest",
-    "mockserver": "^3.1.1",
-    "react": "16.0.0",
     "react-dom": "16.0.0",
-    "react-leaflet": "^2.6.1"
+    "react": "16.0.0",
+    "leaflet": "latest"
   },
   "devDependencies": {
     "react-scripts": "1.0.0",
@@ -24,7 +18,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "mockserver": "json-server server/db.json --port 3004"
+    "eject": "react-scripts eject"
   }
 }
